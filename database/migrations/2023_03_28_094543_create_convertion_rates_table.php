@@ -13,7 +13,9 @@ return new class extends Migration
     {
         Schema::create('convertion_rates', function (Blueprint $table) {
             $table->id();
-            $table->timestamps();
+            $table->string('value');
+            $table->foreignId('currency_id')->references('id')->on('currencies');
+
         });
     }
 
