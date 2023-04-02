@@ -24,8 +24,11 @@ Route::get('/ping',[CurrencyController::class, "pingCheck"]);
 
 
 // Route::post('/add/pair',[CurrencyController::class, "addPair"]);
-Route::post('/add/pair',[CurrencyController::class, "addPair"]);
-Route::get('/get/pair',[CurrencyController::class, "getPair"]);
+Route::middleware('trusttoken')->group(function(){
+    Route::post('/add/pair/{token?}',[CurrencyController::class, "addPair"]);
+    Route::get('/get/pair/{token?}',[CurrencyController::class, "getPair"]);
+});
+Route::delete('/delete/pair/{id}',[CurrencyController::class, "delete"]);
 
 Route::post('/user/register',[UserController::class, "register"]);
 Route::post('/user/login',[UserController::class, "login"]);

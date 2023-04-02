@@ -6,6 +6,7 @@ use App\Models\Currency;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
 use App\Http\Resources\CurrencyResource;
+use App\Models\ConvertionRate;
 
 class CurrencyController extends Controller
 {
@@ -43,7 +44,7 @@ class CurrencyController extends Controller
 
                 'firstCurrency'=>'required|string|max:3',
                 'secondCurrency'=>'required|string|max:3',
-                'convertion_rates'=>'required|array',
+                'convertion_rates'=>'required|array'
 
             ]);
         } catch (\Throwable $th) {
@@ -61,8 +62,23 @@ class CurrencyController extends Controller
 
         return response()->json(['error'=>'' ,'message'=>"la paire {$currency} à ete enregistrées", 'status'=>'done'],200) ;
 
+    }
 
+    public function delete($id){
+        try {
+            $pair = Currency::find($id);
+            // $pair = Currency::findOrFail($id);
+        } catch (\Throwable $th) {
+            $error = $th->getMessage();
+            return response()->json(['error'=>$error , 'status'=>'failed'],202);
+            //throw $th;
+        }
+        $pair->delete();
+        $pair->ConvertionRate()->delete();
 
+        // $pair->delete();
+
+        return response()->json(['error'=>"",'message'=>'La pair à bien été supprimer' , 'status'=>'done'],200);
 
     }
 }
