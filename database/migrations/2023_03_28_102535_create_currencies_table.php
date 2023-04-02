@@ -15,8 +15,6 @@ return new class extends Migration
             $table->id();
             $table->string('firstCurrency');
             $table->string('secondCurrency');
-            $table->timestamps();
-
         });
     }
 

@@ -23,7 +23,7 @@ Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
 Route::get('/ping',[CurrencyController::class, "pingCheck"]);
 
 
-Route::post('/add/pair',[CurrencyController::class, "addPair"]);
+// Route::post('/add/pair',[CurrencyController::class, "addPair"]);
 Route::post('/add/pair',[CurrencyController::class, "addPair"]);
 Route::get('/get/pair',[CurrencyController::class, "getPair"]);
 
