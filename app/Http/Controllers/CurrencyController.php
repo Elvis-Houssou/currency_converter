@@ -60,7 +60,7 @@ class CurrencyController extends Controller
 
         $convertion_rates = $currency->ConvertionRate()->create($request->convertion_rates);
 
-        return response()->json(['error'=>'' ,'message'=>"la paire {$currency} à ete enregistrées", 'status'=>'done'],200) ;
+        return response()->json(['error'=>'' ,'message'=>"la paire à ete enregistrées", 'status'=>'done'],200) ;
 
     }
 

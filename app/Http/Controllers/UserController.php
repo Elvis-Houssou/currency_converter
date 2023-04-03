@@ -28,7 +28,7 @@ class UserController extends Controller
             "password"=>Hash::make($request->password),
         ]);
 
-        return (new UserResource($user))->additional(['error'=>"" , 'status'=>'done']);
+        return (new UserResource($user))->additional(['error'=>"" ,"Message"=>"Utilisateur enregistré", 'status'=>'done']);
 
        }
 
